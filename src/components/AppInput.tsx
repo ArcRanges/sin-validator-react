@@ -1,5 +1,4 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
-import { Mode } from "../types";
 
 export interface AppInputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
