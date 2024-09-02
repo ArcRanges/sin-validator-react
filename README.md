@@ -1,5 +1,7 @@
 # SIN Validator
 
+#### A simple webapp built with ReactJS/TS for validating SIN.
+
 [View the Demo](https://sin-validator-react.vercel.app/)
 
 To run this project locally, you must first clone the project into your local machine:
