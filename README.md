@@ -24,4 +24,22 @@ You may now view the project locally on your web browser by visiting:
 
 `http://127.0.0.1:5173/`
 
+Optional (production build):
+
+If you would like to run the project in production build, you may run:
+
+`npm run build`
+
+A folder called `dist` would be created. Cd into that folder
+
+`cd dist`
+
+Now you need a package called `serve` and if you don't have it yet, you may install it from [here](https://www.npmjs.com/package/serve).
+
+Once that is installed, run:
+
+`serve -s`
+
+You should be able to run the production build locally and view it on your web browser at http://localhost:3000.
+
 Thanks for checking it out!
