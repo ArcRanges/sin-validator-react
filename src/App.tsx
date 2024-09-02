@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useReducer, useState } from "react";
+import AppButton from "./components/AppButton";
+import AppForm from "./components/AppForm";
+import AppHeader from "./components/AppHeader";
+import AppLabel from "./components/AppLabel";
+import AppPasswordInput from "./components/AppPasswordInput";
+import Card from "./components/Card";
 import {
   DIVISOR,
   LUHN_ADJUSTMENT,
@@ -7,18 +13,17 @@ import {
   MAX_SIN_NUMBER,
   MULTIPLIER,
 } from "./constants";
-import AppButton from "./components/AppButton";
-import AppInput from "./components/AppInput";
-import AppLabel from "./components/AppLabel";
-import AppForm from "./components/AppForm";
-import AppHeader from "./components/AppHeader";
-import Card from "./components/Card";
+import { Mode } from "./types";
 
 function App() {
-  const [loading, setLoading] = useState(false);
-  const [sin, setSin] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [mode, toggleMode] = useReducer(
+    (prev) => (prev === Mode.Normal ? Mode.Secure : Mode.Normal),
+    Mode.Secure
+  );
+  const [loading, setLoading] = useState<boolean>(false);
+  const [sin, setSin] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
 
   /**
    * A function that validates whether the input string
@@ -90,17 +95,20 @@ function App() {
               htmlFor="sinInput"
               text="Social Insurance Number (SIN):"
             />
-            <AppInput
-              disabled={loading}
-              onChange={handleInputChange}
-              maxLength={MAX_INPUT_LENGTH}
-              max={MAX_SIN_NUMBER}
-              type="text"
-              id="sinInput"
-              name="sin"
-              placeholder="Enter your 9-digit SIN"
-              pattern="[0-9]{9}"
-              title="SIN must be exactly 9 numeric digits."
+            <AppPasswordInput
+              toggleView={toggleMode}
+              inputProps={{
+                disabled: loading,
+                onChange: handleInputChange,
+                maxLength: MAX_INPUT_LENGTH,
+                max: MAX_SIN_NUMBER,
+                type: mode === Mode.Secure ? "password" : "text",
+                id: "sinInput",
+                name: "sin",
+                placeholder: "Enter your 9-digit SIN",
+                pattern: "[0-9]{9}",
+                title: "SIN must be exactly 9 numeric digits.",
+              }}
             />
             <AppButton disabled={!sin} loading={loading} />
           </AppForm>

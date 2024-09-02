@@ -1,6 +1,7 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
+import { Mode } from "../types";
 
-interface AppInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface AppInputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   disabled: boolean;
 }
@@ -12,7 +13,7 @@ const AppInput: React.FC<AppInputProps> = ({
 }) => {
   return (
     <input
-      className="p-4 mb-4 border rounded shadow-md"
+      className="w-full p-4 mb-4 border rounded shadow-md"
       onChange={onChange}
       disabled={disabled}
       {...restProps}
