@@ -1,5 +1,7 @@
 # SIN Validator
 
+[View the Demo](https://sin-validator-react.vercel.app/)
+
 To run this project locally, you must first clone the project into your local machine:
 
 `git clone https://github.com/ArcRanges/sin-validator-react.git`
